@@ -6,15 +6,8 @@ import TextField from '../TextField';
 import DropdownList from '../DropdownList';
 
 const Form = (props) => {
-  const teams = [
-    'Programação',
-    'Front-End',
-    'Data Science',
-    'DevOps',
-    'UX e Design',
-    'Mobile',
-    'Inovação e Gestão'
-  ]
+
+  const teams = props.teams.map(team => team.name)
 
   const [name, setName] = useState('')
   const [role, setRole] = useState('')
