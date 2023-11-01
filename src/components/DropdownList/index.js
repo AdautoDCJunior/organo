@@ -10,6 +10,7 @@ const DropdownList = (props) => {
         value={props.value}
         onChange={event => props.onChange(event.target.value)}
       >
+        <option value=''></option>
         {props.items.map(item => <option key={item}>{item}</option>)}
       </select>
     </div>

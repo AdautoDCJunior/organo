@@ -17,7 +17,13 @@ const Form = (props) => {
 
   const onSave = (event) => {
     event.preventDefault()
+
     props.onAddingCollaborators({name, role, image, team})
+
+    setName('')
+    setRole('')
+    setImage('')
+    setTeam('')
   }
 
   return (
