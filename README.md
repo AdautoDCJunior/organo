@@ -1,4 +1,5 @@
-![Badge](https://img.shields.io/badge/Status_curso-Finalizado-green)
+![Badge](https://img.shields.io/badge/Curso_React_Desenvolvendo_Javascript-Finalizado-green)
+![Badge](https://img.shields.io/badge/Curso_React_Componentes_Funcionam-Andamento-orange)
 
 # Getting Started with Create React App
 
