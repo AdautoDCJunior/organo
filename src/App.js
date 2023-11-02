@@ -47,6 +47,10 @@ function App() {
 
   const [collaborators, setCollaborators] = useState([])
 
+  const deleteCollaborator = () => {
+    console.log('Deleta colaborador')
+  }
+
   return (
     <div className="App">
       <Banner />
@@ -59,10 +63,11 @@ function App() {
       {teams.map(team =>
         <Team
           key={team.name}
-          name={team.name}
-          primaryColor={team.primaryColor}
-          secondColor={team.secondColor}
-          collaborators={collaborators.filter(collaborator => collaborator.team === team.name)}
+          team={team}
+          collaborators={collaborators.filter(collaborator =>
+            collaborator.team === team.name
+          )}
+          onDelete={deleteCollaborator}
         />
       )}
       <Footer />
