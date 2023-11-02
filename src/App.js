@@ -7,59 +7,116 @@ import Footer from './components/Footer';
 
 function App() {
 
-  const teams = [
+  const [teams, setTeams] = useState([
     {
       name: 'Programação',
-      primaryColor: '#57C278',
-      secondColor: '#D9F7E9'
+      color: '#57C278'
     },
     {
       name: 'Front-End',
-      primaryColor: '#82CFFA',
-      secondColor: '#E8F8FF'
+      color: '#82CFFA'
     },
     {
       name: 'Data Science',
-      primaryColor: '#A6D157',
-      secondColor: '#F0F8E2'
+      color: '#A6D157'
     },
     {
       name: 'DevOps',
-      primaryColor: '#E06B69',
-      secondColor: '#FDE7E8'
+      color: '#E06B69'
     },
     {
       name: 'UX e Design',
-      primaryColor: '#DB6EBF',
-      secondColor: '#FAE9F5'
+      color: '#DB6EBF'
     },
     {
       name: 'Mobile',
-      primaryColor: '#FFBA05',
-      secondColor: '#FFF5D9'
+      color: '#FFBA05'
     },
     {
       name: 'Inovação e Gestão',
-      primaryColor: '#FF8A29',
-      secondColor: '#FFEEDF'
+      color: '#FF8A29'
     }
-  ]
+  ])
 
-  const [collaborators, setCollaborators] = useState([])
+  const [collaborators, setCollaborators] = useState([
+    {
+      name: 'Adauto Júnior',
+      role: 'Engenheiro(a) de Dados',
+      image: 'https://github.com/AdautoDCJunior.png',
+      team: 'Programação'
+    },
+    {
+      name: 'Mariana Campos',
+      role: 'Desenvolvedor(a) FrontEnd',
+      image: 'https://github.com/marianac-campos.png',
+      team: 'Programação'
+    },
+    {
+      name: 'Luís Eduardo',
+      role: 'Desenvolvedor(a) BackEnd',
+      image: 'https://github.com/LCamposDev.png',
+      team: 'Programação'
+    },
+    {
+      name: 'Adauto Júnior',
+      role: 'Engenheiro(a) de Dados',
+      image: 'https://github.com/AdautoDCJunior.png',
+      team: 'Front-End'
+    },
+    {
+      name: 'Mariana Campos',
+      role: 'Desenvolvedor(a) FrontEnd',
+      image: 'https://github.com/marianac-campos.png',
+      team: 'Front-End'
+    },
+    {
+      name: 'Luís Eduardo',
+      role: 'Desenvolvedor(a) BackEnd',
+      image: 'https://github.com/LCamposDev.png',
+      team: 'Front-End'
+    },
+    {
+      name: 'Adauto Júnior',
+      role: 'Engenheiro(a) de Dados',
+      image: 'https://github.com/AdautoDCJunior.png',
+      team: 'Data Science'
+    },
+    {
+      name: 'Mariana Campos',
+      role: 'Desenvolvedor(a) FrontEnd',
+      image: 'https://github.com/marianac-campos.png',
+      team: 'Data Science'
+    },
+    {
+      name: 'Luís Eduardo',
+      role: 'Desenvolvedor(a) BackEnd',
+      image: 'https://github.com/LCamposDev.png',
+      team: 'Data Science'
+    }
+  ])
+
+  const addCollaborator = collaborator => {
+    setCollaborators([...collaborators, collaborator])
+  }
 
   const deleteCollaborator = () => {
     console.log('Deleta colaborador')
   }
 
+  const updateTeam = (name, color) => {
+    setTeams(teams.map(team => {
+      if(team.name === name) {
+        team.color = color
+      }
+
+      return team
+    }))
+  }
+
   return (
     <div className="App">
       <Banner />
-      <Form
-        teams={teams}
-        onAddingCollaborators={collaborator =>
-          setCollaborators([...collaborators, collaborator])
-        }
-      />
+      <Form teams={teams} onAddingCollaborators={addCollaborator}/>
       {teams.map(team =>
         <Team
           key={team.name}
@@ -67,6 +124,7 @@ function App() {
           collaborators={collaborators.filter(collaborator =>
             collaborator.team === team.name
           )}
+          onUpdatingTeam={updateTeam}
           onDelete={deleteCollaborator}
         />
       )}
