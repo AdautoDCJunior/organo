@@ -49,6 +49,7 @@ function App() {
   const [collaborators, setCollaborators] = useState([
     {
       id: uuidv4(),
+      favorite: true,
       name: 'Adauto Júnior',
       role: 'Engenheiro(a) de Dados',
       image: 'https://github.com/AdautoDCJunior.png',
@@ -56,6 +57,7 @@ function App() {
     },
     {
       id: uuidv4(),
+      favorite: false,
       name: 'Mariana Campos',
       role: 'Desenvolvedor(a) FrontEnd',
       image: 'https://github.com/marianac-campos.png',
@@ -63,6 +65,7 @@ function App() {
     },
     {
       id: uuidv4(),
+      favorite: true,
       name: 'Luís Eduardo',
       role: 'Desenvolvedor(a) BackEnd',
       image: 'https://github.com/LCamposDev.png',
@@ -70,6 +73,7 @@ function App() {
     },
     {
       id: uuidv4(),
+      favorite: false,
       name: 'Adauto Júnior',
       role: 'Engenheiro(a) de Dados',
       image: 'https://github.com/AdautoDCJunior.png',
@@ -77,6 +81,7 @@ function App() {
     },
     {
       id: uuidv4(),
+      favorite: true,
       name: 'Mariana Campos',
       role: 'Desenvolvedor(a) FrontEnd',
       image: 'https://github.com/marianac-campos.png',
@@ -84,6 +89,7 @@ function App() {
     },
     {
       id: uuidv4(),
+      favorite: false,
       name: 'Luís Eduardo',
       role: 'Desenvolvedor(a) BackEnd',
       image: 'https://github.com/LCamposDev.png',
@@ -91,6 +97,7 @@ function App() {
     },
     {
       id: uuidv4(),
+      favorite: true,
       name: 'Adauto Júnior',
       role: 'Engenheiro(a) de Dados',
       image: 'https://github.com/AdautoDCJunior.png',
@@ -98,6 +105,7 @@ function App() {
     },
     {
       id: uuidv4(),
+      favorite: true,
       name: 'Mariana Campos',
       role: 'Desenvolvedor(a) FrontEnd',
       image: 'https://github.com/marianac-campos.png',
@@ -105,6 +113,7 @@ function App() {
     },
     {
       id: uuidv4(),
+      favorite: false,
       name: 'Luís Eduardo',
       role: 'Desenvolvedor(a) BackEnd',
       image: 'https://github.com/LCamposDev.png',
@@ -114,6 +123,16 @@ function App() {
 
   const addCollaborator = collaborator => {
     setCollaborators([...collaborators, collaborator])
+  }
+
+  const favoriteCollaborator = (id) => {
+    setCollaborators(collaborators.map(collaborator => {
+      if(collaborator.id === id) {
+        collaborator.favorite = !collaborator.favorite
+      }
+
+      return collaborator
+    }))
   }
 
   const deleteCollaborator = (id) => {
@@ -152,7 +171,8 @@ function App() {
             collaborator.team === team.name
           )}
           onUpdatingTeamColor={updateTeamColor}
-          onDelete={deleteCollaborator}
+          onFavoriteCollaborator={favoriteCollaborator}
+          onDeleteCollaborator={deleteCollaborator}
         />
       )}
       <Footer />

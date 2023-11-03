@@ -1,7 +1,16 @@
 import './Collaborator.css'
-import { AiFillCloseCircle } from 'react-icons/ai'
 
-const collaborator = ({collaborator, backgroundColor, onDelete}) => {
+import { AiFillCloseCircle } from 'react-icons/ai';
+import { MdOutlineFavoriteBorder, MdOutlineFavorite } from 'react-icons/md';
+
+const collaborator = ({collaborator, backgroundColor, onFavorite, onDelete}) => {
+  
+  const propsFavorite = {
+    className: 'collaborator-favorite',
+    size: 25,
+    onClick: () => onFavorite(collaborator.id)
+  }
+
   return (
     <div className='collaborator'>
       <AiFillCloseCircle
@@ -9,6 +18,10 @@ const collaborator = ({collaborator, backgroundColor, onDelete}) => {
         size={25}
         onClick={() => onDelete(collaborator.id)}
       />
+      {collaborator.favorite 
+        ? <MdOutlineFavorite {...propsFavorite}/>
+        : <MdOutlineFavoriteBorder {...propsFavorite}/>
+      }
       <div
         className='collaborator-header'
         style={{backgroundColor: backgroundColor}}
