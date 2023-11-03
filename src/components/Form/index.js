@@ -3,9 +3,8 @@ import './Form.css'
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
+import Field from '../Field';
 import Button from '../Button';
-import TextField from '../TextField';
-import ColorField from '../ColorField';
 import DropdownList from '../DropdownList';
 
 const Form = (props) => {
@@ -28,6 +27,7 @@ const Form = (props) => {
 
     props.onAddingCollaborators({
       id,
+      favorite: false,
       name: collaboratorName,
       role: collaboratorRole,
       image: collaboratorImage,
@@ -59,22 +59,21 @@ const Form = (props) => {
     <section className='form'>
       <form onSubmit={onAddCollaborator}>
         <h2>Preencha os dados para criar o card do colaborador</h2>
-        <TextField
-          required={true}
+        <Field
           label='Nome'
+          required={true}
           placeholder='Digite seu nome'
           value={collaboratorName}
           onChange={value => setCollaboratorName(value)}
         />
-        <TextField
-          required={true}
+        <Field
           label='Cargo'
+          required={true}
           placeholder='Digite seu cargo'
           value={collaboratorRole}
           onChange={value => setCollaboratorRole(value)}
         />
-        <TextField
-          required={false}
+        <Field
           label='Imagem'
           placeholder='Informe o endereço da imagem'
           value={collaboratorImage}
@@ -91,15 +90,16 @@ const Form = (props) => {
       </form>
       <form onSubmit={onAddTeam}>
         <h2>Preencha os dados para criar o um novo time</h2>
-        <TextField
+        <Field
           required={true}
           label='Nome'
           placeholder='Digite o nome do time'
           value={teamName}
           onChange={value => setTeamName(value)}
         />
-        <ColorField
+        <Field
           label='Cor'
+          type='color'
           value={teamColor}
           onChange={value => setTeamColor(value)}
         />
