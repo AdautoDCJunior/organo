@@ -3,7 +3,7 @@ import HextoRgba from 'hex-to-rgba'
 import './Team.css'
 import Collaborator from '../Collaborator'
 
-const Team = ({team, collaborators, onUpdatingTeam, onDelete}) => {
+const Team = ({team, collaborators, onUpdatingTeamColor, onDelete}) => {
 
   const cssSection = {backgroundColor: HextoRgba(team.color, '0.6')}
   const cssH3 = {borderColor: team.color}
@@ -14,7 +14,7 @@ const Team = ({team, collaborators, onUpdatingTeam, onDelete}) => {
         className='team-input-color'
         type='color'
         value={team.color}
-        onChange={event => onUpdatingTeam(team.name, event.target.value)}
+        onChange={event => onUpdatingTeamColor(team.id, event.target.value)}
       />
       <h3 style={cssH3}>{team.name}</h3>
       <div className='collaborators'>

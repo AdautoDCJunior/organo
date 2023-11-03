@@ -3,7 +3,7 @@ import './TextField.css';
 const TextField = (props) => {
 
   return (
-    <div className='campo-texto'>
+    <div className='text-field'>
       <label>{props.label}</label>
       <input
         required={props.required}

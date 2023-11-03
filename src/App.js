@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import Form from './components/Form';
 import Team from './components/Team';
@@ -9,30 +10,37 @@ function App() {
 
   const [teams, setTeams] = useState([
     {
+      id: uuidv4(),
       name: 'Programação',
       color: '#57C278'
     },
     {
+      id: uuidv4(),
       name: 'Front-End',
       color: '#82CFFA'
     },
     {
+      id: uuidv4(),
       name: 'Data Science',
       color: '#A6D157'
     },
     {
+      id: uuidv4(),
       name: 'DevOps',
       color: '#E06B69'
     },
     {
+      id: uuidv4(),
       name: 'UX e Design',
       color: '#DB6EBF'
     },
     {
+      id: uuidv4(),
       name: 'Mobile',
       color: '#FFBA05'
     },
     {
+      id: uuidv4(),
       name: 'Inovação e Gestão',
       color: '#FF8A29'
     }
@@ -40,54 +48,63 @@ function App() {
 
   const [collaborators, setCollaborators] = useState([
     {
+      id: uuidv4(),
       name: 'Adauto Júnior',
       role: 'Engenheiro(a) de Dados',
       image: 'https://github.com/AdautoDCJunior.png',
       team: 'Programação'
     },
     {
+      id: uuidv4(),
       name: 'Mariana Campos',
       role: 'Desenvolvedor(a) FrontEnd',
       image: 'https://github.com/marianac-campos.png',
       team: 'Programação'
     },
     {
+      id: uuidv4(),
       name: 'Luís Eduardo',
       role: 'Desenvolvedor(a) BackEnd',
       image: 'https://github.com/LCamposDev.png',
       team: 'Programação'
     },
     {
+      id: uuidv4(),
       name: 'Adauto Júnior',
       role: 'Engenheiro(a) de Dados',
       image: 'https://github.com/AdautoDCJunior.png',
       team: 'Front-End'
     },
     {
+      id: uuidv4(),
       name: 'Mariana Campos',
       role: 'Desenvolvedor(a) FrontEnd',
       image: 'https://github.com/marianac-campos.png',
       team: 'Front-End'
     },
     {
+      id: uuidv4(),
       name: 'Luís Eduardo',
       role: 'Desenvolvedor(a) BackEnd',
       image: 'https://github.com/LCamposDev.png',
       team: 'Front-End'
     },
     {
+      id: uuidv4(),
       name: 'Adauto Júnior',
       role: 'Engenheiro(a) de Dados',
       image: 'https://github.com/AdautoDCJunior.png',
       team: 'Data Science'
     },
     {
+      id: uuidv4(),
       name: 'Mariana Campos',
       role: 'Desenvolvedor(a) FrontEnd',
       image: 'https://github.com/marianac-campos.png',
       team: 'Data Science'
     },
     {
+      id: uuidv4(),
       name: 'Luís Eduardo',
       role: 'Desenvolvedor(a) BackEnd',
       image: 'https://github.com/LCamposDev.png',
@@ -99,13 +116,19 @@ function App() {
     setCollaborators([...collaborators, collaborator])
   }
 
-  const deleteCollaborator = () => {
-    console.log('Deleta colaborador')
+  const deleteCollaborator = (id) => {
+    setCollaborators(collaborators.filter(collaborator => 
+      collaborator.id !== id
+    ))
   }
 
-  const updateTeam = (name, color) => {
+  const addTeam = team => {
+    setTeams([...teams, team])
+  }
+
+  const updateTeamColor = (id, color) => {
     setTeams(teams.map(team => {
-      if(team.name === name) {
+      if(team.id === id) {
         team.color = color
       }
 
@@ -116,7 +139,11 @@ function App() {
   return (
     <div className="App">
       <Banner />
-      <Form teams={teams} onAddingCollaborators={addCollaborator}/>
+      <Form
+        teams={teams}
+        onAddingCollaborators={addCollaborator}
+        onAddingTeam={addTeam}
+      />
       {teams.map(team =>
         <Team
           key={team.name}
@@ -124,7 +151,7 @@ function App() {
           collaborators={collaborators.filter(collaborator =>
             collaborator.team === team.name
           )}
-          onUpdatingTeam={updateTeam}
+          onUpdatingTeamColor={updateTeamColor}
           onDelete={deleteCollaborator}
         />
       )}
